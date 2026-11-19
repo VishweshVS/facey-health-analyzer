@@ -1,0 +1,17 @@
+{
+  "acne_inflammation": {
+    "title": "Mild Acne / Inflammatory Spot",
+    "region": "Face / Cheek",
+    "solution": "Cleanse gently twice daily with a salicylic acid or benzoyl peroxide wash. Avoid picking and apply a non-comedogenic moisturizer."
+  },
+  "teeth_staining": {
+    "title": "Surface Teeth Staining / Plaque",
+    "region": "Teeth / Mouth",
+    "solution": "Brush with fluoride toothpaste, use dental floss daily, and consider limiting coffee, tea, or dark sodas."
+  },
+  "nail_discoloration": {
+    "title": "Nail Bed Color Variation",
+    "region": "Hands / Nails",
+    "solution": "Ensure proper hydration and balanced nutrition rich in biotin and iron. If persistent, consult a dermatologist."
+  }
+}

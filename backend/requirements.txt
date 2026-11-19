@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+opencv-python-headless
+mediapipe
+torch
+torchvision
+ultralytics
+numpy
+pillow
+websockets
+python-multipart
+pydantic
+pydantic-settings
+python-dotenv
+google-genai
