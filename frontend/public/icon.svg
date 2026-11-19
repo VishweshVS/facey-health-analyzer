@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="blueBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1E3A8A" />
+    </linearGradient>
+    <linearGradient id="limeRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BEF264" />
+      <stop offset="100%" stop-color="#84CC16" />
+    </linearGradient>
+    <radialGradient id="lensCore" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="75%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+  </defs>
+
+  <!-- Camera with Smiley Face Only (Fully Transparent Background) -->
+  <g transform="translate(0, 10)">
+    <!-- Top Shutter Button -->
+    <rect x="148" y="116" width="52" height="24" rx="10" fill="url(#limeRing)" />
+
+    <!-- Top Viewfinder Bump -->
+    <path d="M 212 132 L 230 106 L 282 106 L 300 132 Z" fill="url(#blueBody)" />
+
+    <!-- Main Camera Body -->
+    <rect x="84" y="132" width="344" height="244" rx="54" fill="url(#blueBody)" stroke="#93C5FD" stroke-width="6" />
+
+    <!-- Flash / Sensor Accent -->
+    <circle cx="372" cy="176" r="14" fill="#A3E635" />
+
+    <!-- Outer Lens Rim -->
+    <circle cx="256" cy="254" r="96" fill="#0F172A" stroke="url(#limeRing)" stroke-width="12" />
+
+    <!-- Inner Lens Glass -->
+    <circle cx="256" cy="254" r="76" fill="url(#lensCore)" />
+
+    <!-- Subtle Lens Reflection -->
+    <path d="M 204 220 A 64 64 0 0 1 284 198" fill="none" stroke="#60A5FA" stroke-width="6" stroke-linecap="round" opacity="0.45" />
+    <circle cx="216" cy="214" r="7" fill="#FFFFFF" opacity="0.35" />
+
+    <!-- Smiley Face Inside Lens -->
+    <g stroke="#BEF264" stroke-width="10" stroke-linecap="round" fill="none">
+      <!-- Left Happy Eye -->
+      <path d="M 218 244 Q 229 227 240 244" />
+      <!-- Right Happy Eye -->
+      <path d="M 272 244 Q 283 227 294 244" />
+      <!-- Smile -->
+      <path d="M 224 272 Q 256 302 288 272" />
+    </g>
+  </g>
+</svg>
