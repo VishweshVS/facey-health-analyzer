@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CameraFeed from './components/CameraFeed';
 import ResultCard from './components/ResultCard';
+import { getApiBaseUrl } from './api';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const STORAGE_KEY = 'facey_scan_history_v1';
 
 function App() {
+  const apiBaseUrl = getApiBaseUrl();
   const [loading, setLoading] = useState(false);
   const [detections, setDetections] = useState([]);
   const [backendStatus, setBackendStatus] = useState('Checking backend...');
@@ -19,11 +20,25 @@ function App() {
   });
 
   useEffect(() => {
+    let active = true;
+
     axios
-      .get(`${API_BASE_URL}/`)
-      .then((res) => setBackendStatus(res.data.status || 'Online'))
-      .catch(() => setBackendStatus('Backend offline (Start uvicorn server)'));
-  }, []);
+      .get(`${apiBaseUrl}/`)
+      .then((res) => {
+        if (active) {
+          setBackendStatus(res.data?.status || 'Online');
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setBackendStatus('Backend offline (Render may be waking up or unreachable)');
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [apiBaseUrl]);
 
   useEffect(() => {
     try {
@@ -41,9 +56,7 @@ function App() {
     setLoading(true);
     setDetections([]);
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/analyze-frame`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await axios.post(`${apiBaseUrl}/api/analyze-frame`, formData);
       const nextDetections = response.data.detections || [];
       setDetections(nextDetections);
 
