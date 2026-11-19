@@ -10,7 +10,7 @@ from app.services.face_analysis import analyze_facial_skin
 from app.services.teeth_analysis import analyze_teeth
 from app.services.hand_nail_analysis import analyze_nails
 
-client = genai.Client(api_key=settings.GEMINI_API_KEY)
+client = genai.Client(api_key=settings.GEMINI_API_KEY,http_options=types.HttpOptions(api_version="v1beta"))
 
 
 class DetectionItem(BaseModel):
