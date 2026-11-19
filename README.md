@@ -34,6 +34,8 @@ VITE_API_URL=http://localhost:8000
 
 Set `VITE_API_URL` to the backend's base URL, without a trailing slash. Vite exposes `VITE_` variables in browser code, so never put secrets in them. Restart the Vite server after changing frontend environment variables.
 
+The production build currently uses `https://facey-health-analyzer.onrender.com` from `frontend/.env.production`. If the backend URL changes, update that value or set `VITE_API_URL` in the frontend host's build environment.
+
 ## Run locally
 
 Start the backend from the `backend/` directory:

@@ -119,8 +119,8 @@ function App() {
       <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
         <CameraFeed
           onCaptureResult={handleCaptureResult}
+          onClearDetections={() => setDetections([])}
           loading={loading}
-          setLoading={setLoading}
           detections={detections}
         />
 

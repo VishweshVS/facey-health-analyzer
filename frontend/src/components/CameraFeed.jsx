@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Camera, RefreshCw } from 'lucide-react';
 
-export default function CameraFeed({ onCaptureResult, setLoading, loading, detections }) {
+export default function CameraFeed({ onCaptureResult, onClearDetections, loading, detections }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const snapshotRef = useRef(null);
@@ -19,6 +19,8 @@ export default function CameraFeed({ onCaptureResult, setLoading, loading, detec
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        setCapturedFrameUrl(null);
+        onClearDetections();
         setIsStreaming(true);
       }
     } catch (err) {
@@ -49,7 +51,8 @@ export default function CameraFeed({ onCaptureResult, setLoading, loading, detec
     const canvas = canvasRef.current;
     if (!video || !canvas) return;
     const snapshot = snapshotRef.current;
-    const source = capturedFrameUrl && snapshot ? snapshot : video;
+    const hasSnapshot = Boolean(capturedFrameUrl && snapshot);
+    const source = hasSnapshot ? snapshot : video;
 
     const drawDetections = () => {
       const width = source === snapshot ? snapshot.naturalWidth : video.videoWidth;
@@ -61,6 +64,8 @@ export default function CameraFeed({ onCaptureResult, setLoading, loading, detec
 
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, width, height);
+
+      if (!hasSnapshot) return;
 
       detections.forEach(item => {
         if (!item.box || item.box.length !== 4) return;
